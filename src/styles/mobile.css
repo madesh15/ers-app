@@ -1,0 +1,236 @@
+/* ─── Mobile Responsive Overrides ───────────────────────────────── */
+/* Breakpoints:
+   - sm:  480px  (large phones)
+   - md:  768px  (tablets)
+   - lg:  1024px (desktops)
+*/
+
+/* ── Navbar ────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  nav {
+    padding: 0 16px !important;
+  }
+
+  /* Hide phase breadcrumb on mobile */
+  nav > div:nth-child(2) {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  nav > div:last-child .btn:not(.btn-primary) {
+    display: none !important;
+  }
+}
+
+/* ── Landing page ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Domain grid: 2 cols on tablet */
+  .domain-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Feature grid: 1 col on tablet */
+  .feature-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Stats: 2x2 grid */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Domain grid: 1 col on phone */
+  .domain-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Stats: 2 col */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Hero buttons: stack */
+  .hero-cta {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .hero-cta .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* ── Assessment page ───────────────────────────────────────────── */
+@media (max-width: 640px) {
+  /* Card options: full width */
+  .card-option {
+    padding: 12px 14px !important;
+  }
+
+  /* Slider labels: smaller font */
+  .slider-label {
+    font-size: 10px !important;
+  }
+
+  /* Nav buttons: stack on very small */
+  .assessment-nav {
+    flex-direction: column !important;
+  }
+
+  .assessment-nav .btn {
+    flex: none !important;
+    width: 100% !important;
+  }
+}
+
+/* ── Results page ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Primary CTA grid: stack */
+  .results-cta-primary {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Secondary CTA: 2 cols */
+  .results-cta-secondary {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Impact metrics: 2 cols */
+  .impact-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* ROI card: single col */
+  .roi-card {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Absentee risk alert risks: single col */
+  .absentee-risks {
+    grid-template-columns: 1fr !important;
+  }
+
+  .absentee-opportunities {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Lead form: single col */
+  .lead-form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Tier grid: 2x2 */
+  .tier-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Score comparison: stack vertically */
+  .score-comparison {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Hide delta arrow on mobile comparison */
+  .score-comparison-delta {
+    display: none !important;
+  }
+
+  /* Secondary CTAs: single col */
+  .results-cta-secondary {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Simulator page ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Templates: single col */
+  .template-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Simulator CTAs: single col */
+  .simulator-cta-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Footer ────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  footer > div {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 16px !important;
+  }
+
+  footer .footer-links {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 12px 20px !important;
+  }
+}
+
+/* ── Generic responsive utilities ─────────────────────────────── */
+@media (max-width: 480px) {
+  /* Page padding */
+  .page-wrapper {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Card padding */
+  .card {
+    padding: 16px !important;
+  }
+
+  /* Domain bar name */
+  .domain-bar-name {
+    font-size: 12px !important;
+  }
+
+  /* Benchmark distribution bar */
+  .benchmark-scale {
+    font-size: 8px !important;
+  }
+}
+
+/* ── Touch targets ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .btn {
+    min-height: 44px;   /* iOS minimum tap target */
+  }
+
+  button {
+    min-height: 36px;
+  }
+
+  /* Toggle switches */
+  .toggle-switch {
+    width: 48px !important;
+    height: 28px !important;
+  }
+}
+
+/* ── Print styles ──────────────────────────────────────────────── */
+@media print {
+  nav,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .card {
+    border: 1px solid #e2e8f0 !important;
+    background: #fff !important;
+  }
+}
