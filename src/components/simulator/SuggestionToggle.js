@@ -5,7 +5,7 @@ export default function SuggestionToggle({ suggestion, isApplied, isRelevant, on
   const domain = getDomain(suggestion.domain);
 
   return (
-    <div style={{
+    <div className="suggestion-card" style={{
       background: "var(--bg-card)",
       border: isApplied
         ? `1px solid rgba(${domain.colorRgb},0.4)`
@@ -88,6 +88,7 @@ export default function SuggestionToggle({ suggestion, isApplied, isRelevant, on
         <button
           onClick={() => isRelevant && onToggle(suggestion)}
           disabled={!isRelevant}
+          className="toggle-switch"
           style={{
             width: 52, height: 28,
             borderRadius: 14,

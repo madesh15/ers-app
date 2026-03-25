@@ -168,13 +168,40 @@
 
 /* ── Simulator page ────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  /* Templates: single col */
+  /* Templates: 2 cols on tablet */
   .template-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 
   /* Simulator CTAs: single col */
   .simulator-cta-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Score comparison: stack vertically */
+  .score-comparison {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Hide delta arrow on mobile comparison */
+  .score-comparison > div:nth-child(2) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+  }
+  
+  .score-comparison > div:nth-child(2) [style*="font-size: 22px"] {
+    display: none !important; /* Hide the arrow */
+  }
+
+  /* Templates: single col on phone */
+  .template-grid {
     grid-template-columns: 1fr !important;
   }
 }

@@ -43,7 +43,7 @@ export default function ImpactSummary({ originalScore, simScore, appliedCount })
         📊 Impact Summary
       </div>
 
-      <div style={{
+      <div className="impact-grid" style={{
         display: "grid",
         gridTemplateColumns: "repeat(2, 1fr)",
         gap: 10,

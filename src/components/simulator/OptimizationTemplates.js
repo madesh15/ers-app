@@ -20,7 +20,7 @@ export default function OptimizationTemplates({ answers, onApplyTemplate }) {
       }}>
         ⚡ QUICK OPTIMIZATION TEMPLATES
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
+      <div className="template-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
         {OPTIMIZATION_TEMPLATES.map((tmpl) => (
           <button
             key={tmpl.id}

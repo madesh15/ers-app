@@ -8,7 +8,7 @@ export default function ScoreComparison({ originalResult, simResult }) {
   const deltaColor = delta > 0 ? "#10b981" : delta < 0 ? "#ef4444" : "var(--text-muted)";
 
   return (
-    <div style={{
+    <div className="score-comparison" style={{
       display: "grid",
       gridTemplateColumns: "1fr auto 1fr",
       gap: 16,
