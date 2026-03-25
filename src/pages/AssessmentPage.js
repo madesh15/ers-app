@@ -69,6 +69,17 @@ export default function AssessmentPage() {
       navigate(currentQuestionIndex - 1, true);
     }
   };
+  
+  const handleSkip = () => {
+    if (animating) return;
+    setAnswer(currentQ.id, { value: "skipped" });
+    if (isLastQuestion) {
+      setPhase(PHASES.RESULTS);
+    } else {
+      setDirection("forward");
+      navigate(currentQuestionIndex + 1);
+    }
+  };
 
   const handleSelectIndex = useCallback((idx) => {
     if (!currentQ) return;
@@ -177,11 +188,11 @@ export default function AssessmentPage() {
       </div>
 
       {/* Navigation */}
-      <div style={{ paddingBottom: 32, display: "flex", gap: 10 }}>
+      <div style={{ paddingBottom: 32, display: "grid", gridTemplateColumns: "1fr 2fr", gap: 10 }}>
+        {/* Row 1: Back and Continue */}
         <button
           onClick={handleBack}
           style={{
-            flex: 1,
             padding: "13px",
             background: "var(--bg-card-hover)",
             border: "1px solid var(--border)",
@@ -201,7 +212,6 @@ export default function AssessmentPage() {
           onClick={handleNext}
           disabled={!canProceed}
           style={{
-            flex: 2,
             padding: "13px",
             background: canProceed
               ? "var(--accent-blue)"
@@ -220,6 +230,35 @@ export default function AssessmentPage() {
           onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
         >
           {isLastQuestion ? "View My Results →" : "Continue →"}
+        </button>
+
+        {/* Row 2: Skip button (span across both columns) */}
+        <button
+          onClick={handleSkip}
+          style={{
+            gridColumn: "span 2",
+            padding: "10px",
+            background: "none",
+            border: "1px dashed var(--border)",
+            borderRadius: 10,
+            color: "var(--text-muted)",
+            fontSize: 13,
+            fontFamily: "var(--font-mono)",
+            cursor: "pointer",
+            transition: "all 0.2s",
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.borderColor = "var(--accent-red)";
+            e.currentTarget.style.color = "var(--accent-red)";
+            e.currentTarget.style.background = "rgba(226,6,18,0.03)";
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.borderColor = "var(--border)";
+            e.currentTarget.style.color = "var(--text-muted)";
+            e.currentTarget.style.background = "none";
+          }}
+        >
+          ⏭ Skip this question
         </button>
       </div>
 

@@ -3,26 +3,26 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Brand colours - Simple Light Theme */
-  --bg-base:        #f8fafc; /* Slate 50 */
+  /* Brand colours - Ballot DA Theme */
+  --bg-base:        #f2f5f7; /* Light Highlight */
   --bg-surface:     #ffffff;
   --bg-card:        #ffffff;
-  --bg-card-hover:  #f1f5f9; /* Slate 100 */
-  --border:         #e2e8f0; /* Slate 200 */
-  --border-bright:  #cbd5e1; /* Slate 300 */
+  --bg-card-hover:  #eef2f5; 
+  --border:         #d1d8df; 
+  --border-bright:  #b1beca; 
 
   /* Text */
-  --text-primary:   #0f172a; /* Slate 900 */
-  --text-secondary: #334155; /* Slate 700 */
-  --text-muted:     #64748b; /* Slate 500 */
+  --text-primary:   #0f172a; /* Keep dark for headings */
+  --text-secondary: #5a5a5a; /* Ballot DA Body Text */
+  --text-muted:     #71717a; 
 
-  /* Accent (Flat) */
-  --accent-blue:    #2563eb; /* Blue 600 */
-  --accent-purple:  #7c3aed;
+  /* Accent (Ballot DA) */
+  --accent-blue:    #005d9e; /* Ballot Blue */
+  --accent-red:     #e20612; /* DA Red */
   --accent-orange:  #ea580c;
   --accent-green:   #16a34a;
-  --accent-red:     #dc2626;
   --accent-amber:   #d97706;
+  --accent-purple:  #7c3aed;
   --accent-indigo:  #4f46e5;
 
   /* Domain colours */
@@ -157,10 +157,16 @@ body {
 }
 .btn-ghost:hover { border-color: var(--border-bright); color: var(--text-primary); }
 
+.btn-accent-red {
+  background: var(--accent-red);
+  color: #fff;
+}
+.btn-accent-red:hover { opacity: 0.9; }
+
 .btn-danger {
-  background: rgba(239,68,68,0.1);
-  border: 1px solid rgba(239,68,68,0.3);
-  color: #f87171;
+  background: rgba(226,6,18,0.1);
+  border: 1px solid rgba(226,6,18,0.3);
+  color: #e20612;
 }
 
 /* ─── Badge ─────────────────────────────────────────────────────── */

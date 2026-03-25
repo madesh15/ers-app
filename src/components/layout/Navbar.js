@@ -96,7 +96,7 @@ export default function Navbar() {
           href="https://ballotda.com/en/contact"
           target="_blank"
           rel="noopener noreferrer"
-          className="btn btn-primary"
+          className="btn btn-accent-red"
           style={{ padding: "7px 18px", fontSize: 13, textDecoration: "none" }}
         >
           Contact Us

@@ -49,10 +49,10 @@ export default function LandingPage() {
           fontWeight: 700,
           lineHeight: 1.1,
           letterSpacing: "-0.02em",
-          color: "var(--text-primary)",
+          color: "var(--accent-blue)",
           marginBottom: 22,
         }}>
-          Election Readiness <span style={{ color: "var(--accent-blue)" }}>Scorer™</span>
+          Election Readiness <span style={{ color: "var(--accent-red)" }}>Scorer™</span>
         </h1>
 
         {/* Sub */}
