@@ -11,15 +11,17 @@
     padding: 0 16px !important;
   }
 
-  /* Hide phase breadcrumb on mobile */
-  nav > div:nth-child(2) {
+  /* Hide phase breadcrumb on mobile to save space */
+  .nav-breadcrumbs {
     display: none !important;
   }
 }
 
 @media (max-width: 480px) {
-  nav > div:last-child .btn:not(.btn-primary) {
-    display: none !important;
+  /* Keep navbar buttons visible but maybe smaller */
+  nav .btn {
+    padding: 6px 12px !important;
+    font-size: 11px !important;
   }
 }
 
@@ -45,17 +47,34 @@
   /* Domain grid: 1 col on phone */
   .domain-grid {
     grid-template-columns: 1fr !important;
+    gap: 10px !important;
   }
 
   /* Stats: 2 col */
   .stats-grid {
     grid-template-columns: repeat(2, 1fr) !important;
+    border-radius: var(--radius-md) !important;
+  }
+  
+  .stats-grid > div {
+    border-right: 1px solid var(--border) !important;
+    border-bottom: 1px solid var(--border) !important;
+  }
+  
+  .stats-grid > div:nth-child(2n) {
+    border-right: none !important;
+  }
+
+  .stats-grid > div:nth-last-child(-n+2) {
+    border-bottom: none !important;
   }
 
   /* Hero buttons: stack */
   .hero-cta {
+    display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
+    gap: 12px !important;
   }
 
   .hero-cta .btn {

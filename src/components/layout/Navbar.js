@@ -5,7 +5,7 @@ export default function Navbar() {
   const { phase, reset } = useAssessment();
 
   return (
-    <nav style={{
+    <nav className="navbar" style={{
       position: "sticky",
       top: 0,
       zIndex: 100,
@@ -52,7 +52,7 @@ export default function Navbar() {
       </button>
 
       {/* Phase breadcrumb */}
-      <div style={{
+      <div className="nav-breadcrumbs" style={{
         display: "flex",
         alignItems: "center",
         gap: 6,

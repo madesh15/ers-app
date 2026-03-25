@@ -21,7 +21,7 @@ export default function LandingPage() {
       <div style={{
         maxWidth: 900,
         margin: "0 auto",
-        padding: "80px 24px 60px",
+        padding: "60px 16px 40px",
         textAlign: "center",
         position: "relative",
       }}>
@@ -67,7 +67,7 @@ export default function LandingPage() {
         </p>
 
         {/* CTA */}
-        <div className="fade-up-3" style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+        <div className="fade-up-3 hero-cta" style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
           <button
             onClick={() => {
               reset();
@@ -89,12 +89,11 @@ export default function LandingPage() {
       </div>
 
       {/* ── Stats row ── */}
-      <div className="fade-up-3" style={{
+      <div className="fade-up-3 stats-grid" style={{
         maxWidth: 720,
         margin: "0 auto 64px",
         display: "grid",
         gridTemplateColumns: "repeat(4, 1fr)",
-        gap: 1,
         border: "1px solid var(--border)",
         borderRadius: "var(--radius-lg)",
         overflow: "hidden",
@@ -136,7 +135,7 @@ export default function LandingPage() {
           7 OPERATIONAL DOMAINS ASSESSED
         </div>
 
-        <div style={{
+        <div className="domain-grid" style={{
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
           gap: 12,
