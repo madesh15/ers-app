@@ -14,7 +14,7 @@ export default function OptimizationTemplates({ answers, onApplyTemplate }) {
       <div style={{
         fontFamily: "var(--font-mono)",
         fontSize: 11,
-        color: "var(--text-muted)",
+        color: "var(--accent-blue)",
         letterSpacing: "0.1em",
         marginBottom: 10,
       }}>

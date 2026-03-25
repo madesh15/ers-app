@@ -37,7 +37,7 @@ export default function DomainBar({ domain, animate = true, compact = false }) {
           <span style={{
             fontWeight: 600,
             fontSize: compact ? 13 : 14,
-            color: "var(--text-primary)",
+            color: "var(--accent-blue)",
           }}>{domain.name}</span>
           {domain.premium && (
             <span className="badge badge-premium">PREMIUM</span>
@@ -74,7 +74,7 @@ export default function DomainBar({ domain, animate = true, compact = false }) {
       {!compact && (
         <div style={{
           display: "flex", justifyContent: "space-between",
-          marginTop: 6, fontSize: 12, color: "var(--text-muted)",
+          marginTop: 6, fontSize: 12, color: "var(--accent-blue)",
           fontFamily: "var(--font-mono)",
         }}>
           <span>{domain.earned} earned</span>

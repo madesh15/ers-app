@@ -25,7 +25,7 @@ export default function ResultsPage() {
   if (!scoreResult) {
     return (
       <PageWrapper>
-        <p style={{ color: "var(--text-muted)", textAlign: "center", marginTop: 80 }}>
+        <p style={{ color: "var(--accent-blue)", textAlign: "center", marginTop: 80 }}>
           No results yet. <button onClick={() => setPhase(PHASES.LANDING)} className="btn btn-ghost" style={{ padding: "6px 14px", fontSize: 13 }}>Start Assessment</button>
         </p>
       </PageWrapper>
@@ -43,7 +43,7 @@ export default function ResultsPage() {
           <div style={{
             fontFamily: "var(--font-mono)",
             fontSize: 10,
-            color: "var(--text-muted)",
+            color: "var(--accent-blue)",
             letterSpacing: "0.15em",
             marginBottom: 10,
           }}>
@@ -53,7 +53,7 @@ export default function ResultsPage() {
             fontFamily: "var(--font-display)",
             fontSize: "clamp(24px, 3.5vw, 36px)",
             fontWeight: 700,
-            color: "var(--text-primary)",
+            color: "var(--accent-blue)",
             letterSpacing: "-0.02em",
           }}>
             Your Results Report

@@ -20,14 +20,14 @@ export default function DomainBreakdown({ domainScores }) {
           fontFamily: "var(--font-display)",
           fontSize: 18,
           fontWeight: 700,
-          color: "var(--text-primary)",
+          color: "var(--accent-blue)",
         }}>
           Domain Breakdown
         </h2>
         <span style={{
           fontFamily: "var(--font-mono)",
           fontSize: 11,
-          color: "var(--text-muted)",
+          color: "var(--accent-blue)",
         }}>
           {sorted.length} domains assessed
         </span>
