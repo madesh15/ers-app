@@ -19,6 +19,7 @@
 
 @media (max-width: 480px) {
   /* Keep navbar buttons visible but maybe smaller */
+
   nav .btn {
     padding: 6px 12px !important;
     font-size: 11px !important;
@@ -27,6 +28,7 @@
 
 /* ── Landing page ──────────────────────────────────────────────── */
 @media (max-width: 768px) {
+
   /* Domain grid: 2 cols on tablet */
   .domain-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -44,6 +46,7 @@
 }
 
 @media (max-width: 480px) {
+
   /* Domain grid: 1 col on phone */
   .domain-grid {
     grid-template-columns: 1fr !important;
@@ -55,17 +58,17 @@
     grid-template-columns: repeat(2, 1fr) !important;
     border-radius: var(--radius-md) !important;
   }
-  
-  .stats-grid > div {
+
+  .stats-grid>div {
     border-right: 1px solid var(--border) !important;
     border-bottom: 1px solid var(--border) !important;
   }
-  
-  .stats-grid > div:nth-child(2n) {
+
+  .stats-grid>div:nth-child(2n) {
     border-right: none !important;
   }
 
-  .stats-grid > div:nth-last-child(-n+2) {
+  .stats-grid>div:nth-last-child(-n+2) {
     border-bottom: none !important;
   }
 
@@ -85,6 +88,7 @@
 
 /* ── Assessment page ───────────────────────────────────────────── */
 @media (max-width: 640px) {
+
   /* Card options: full width */
   .card-option {
     padding: 12px 14px !important;
@@ -108,6 +112,7 @@
 
 /* ── Results page ──────────────────────────────────────────────── */
 @media (max-width: 768px) {
+
   /* Primary CTA grid: stack */
   .results-cta-primary {
     grid-template-columns: 1fr !important;
@@ -149,6 +154,7 @@
 }
 
 @media (max-width: 480px) {
+
   /* Score comparison: stack vertically */
   .score-comparison {
     grid-template-columns: 1fr !important;
@@ -168,6 +174,7 @@
 
 /* ── Simulator page ────────────────────────────────────────────── */
 @media (max-width: 768px) {
+
   /* Templates: 2 cols on tablet */
   .template-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -180,6 +187,7 @@
 }
 
 @media (max-width: 640px) {
+
   /* Score comparison: stack vertically */
   .score-comparison {
     grid-template-columns: 1fr !important;
@@ -187,7 +195,7 @@
   }
 
   /* Hide delta arrow on mobile comparison */
-  .score-comparison > div:nth-child(2) {
+  .score-comparison>div:nth-child(2) {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -195,9 +203,10 @@
     gap: 20px;
     padding: 10px 0;
   }
-  
-  .score-comparison > div:nth-child(2) [style*="font-size: 22px"] {
-    display: none !important; /* Hide the arrow */
+
+  .score-comparison>div:nth-child(2) [style*="font-size: 22px"] {
+    display: none !important;
+    /* Hide the arrow */
   }
 
   /* Templates: single col on phone */
@@ -208,7 +217,7 @@
 
 /* ── Footer ────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
-  footer > div {
+  footer>div {
     flex-direction: column !important;
     text-align: center !important;
     gap: 16px !important;
@@ -223,6 +232,7 @@
 
 /* ── Generic responsive utilities ─────────────────────────────── */
 @media (max-width: 480px) {
+
   /* Page padding */
   .page-wrapper {
     padding-left: 16px !important;
@@ -248,7 +258,8 @@
 /* ── Touch targets ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .btn {
-    min-height: 44px;   /* iOS minimum tap target */
+    min-height: 44px;
+    /* iOS minimum tap target */
   }
 
   button {
@@ -264,6 +275,7 @@
 
 /* ── Print styles ──────────────────────────────────────────────── */
 @media print {
+
   nav,
   footer,
   .no-print {
