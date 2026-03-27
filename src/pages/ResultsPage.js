@@ -27,15 +27,11 @@ export default function ResultsPage() {
         useCORS: true,
         logging: false,
         backgroundColor: "#ffffff",
-        scrollX: 0,
-        scrollY: -window.scrollY,
-        windowWidth: reportRef.current.scrollWidth,
-        windowHeight: reportRef.current.scrollHeight,
         onclone: (clonedDoc) => {
           const style = clonedDoc.createElement("style");
           style.innerHTML = `
             * { -webkit-print-color-adjust: exact !important; }
-            #pdf-capture { padding: 32px !important; background: #ffffff !important; }
+            #pdf-capture { padding: 32px !important; background: #ffffff !important; border: none !important; }
             h1, h2, h3 { color: #0f172a !important; }
             p { color: #334155 !important; }
           `;
@@ -69,10 +65,12 @@ export default function ResultsPage() {
           }
         },
       });
+
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF("p", "mm", "a4");
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
       pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
       pdf.save(`BallotDA_Election_Readiness_Report_${new Date().toLocaleDateString().replace(/\//g, "_")}.pdf`);
       toast.success("Report downloaded successfully!");
@@ -105,7 +103,7 @@ export default function ResultsPage() {
       <PageWrapper maxWidth={860}>
 
         {/* ── PDF CAPTURE ZONE — only this goes into the PDF ── */}
-        <div id="pdf-capture" ref={reportRef} style={{ background: "#ffffff", padding: "28px", borderRadius: "var(--radius-xl)", marginBottom: 24 }}>
+        <div id="pdf-capture" ref={reportRef} className="results-pdf-box" style={{ background: "#ffffff", padding: "28px", borderRadius: "var(--radius-xl)", marginBottom: 24 }}>
 
           {/* 1. Header */}
           <div className="fade-up" style={{ textAlign: "center", marginBottom: 32 }}>
@@ -121,8 +119,10 @@ export default function ResultsPage() {
           </div>
 
           {/* 2. Score hero */}
-          <div className="fade-up-1" style={{ padding: "40px 32px", background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "var(--radius-xl)", textAlign: "center", marginBottom: 20 }}>
-            <ScoreGauge score={score} size={220} animate />
+          <div className="fade-up-1 results-score-hero" style={{ padding: "40px 32px", background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "var(--radius-xl)", textAlign: "center", marginBottom: 20 }}>
+            <div className="score-gauge-wrapper">
+              <ScoreGauge score={score} size={220} animate />
+            </div>
             <div style={{ marginTop: 24, marginBottom: 14 }}>
               <TierBadge tier={tier} size="xl" />
             </div>
@@ -162,7 +162,7 @@ export default function ResultsPage() {
           <LeadCaptureForm />
         </div>
 
-        <div className="fade-up-3" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: 28, width: "100%" }}>
+        <div className="fade-up-3 results-cta-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: 28, width: "100%" }}>
 
           <button onClick={initSimulator} className="btn" style={{ background: "var(--accent-blue)", color: "#fff", padding: "16px", fontSize: 14, flexDirection: "column", gap: 4, height: "auto", borderRadius: "var(--radius-lg)", width: "100%" }}>
             <span style={{ fontSize: 20 }}>🧪</span>

@@ -5,7 +5,7 @@ export default function TierBadge({ tier, size = "md" }) {
     sm:  { font: 11, padding: "3px 10px", emoji: 14 },
     md:  { font: 13, padding: "5px 14px", emoji: 16 },
     lg:  { font: 16, padding: "8px 20px", emoji: 20 },
-    xl:  { font: 20, padding: "12px 28px", emoji: 26 },
+    xl:  { font: 18, padding: "10px 24px", emoji: 24 },
   };
   const s = sizes[size] || sizes.md;
 
@@ -13,7 +13,8 @@ export default function TierBadge({ tier, size = "md" }) {
     <span style={{
       display: "inline-flex",
       alignItems: "center",
-      gap: 6,
+      justifyContent: "center",
+      gap: 8,
       padding: s.padding,
       borderRadius: 99,
       background: tier.bgColor,
@@ -24,9 +25,11 @@ export default function TierBadge({ tier, size = "md" }) {
       color: tier.color,
       letterSpacing: "-0.01em",
       whiteSpace: "nowrap",
+      maxWidth: "100%",
+      boxSizing: "border-box",
     }}>
-      <span style={{ fontSize: s.emoji }}>{tier.emoji}</span>
-      {tier.name}
+      <span style={{ fontSize: s.emoji, flexShrink: 0 }}>{tier.emoji}</span>
+      <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>{tier.name}</span>
     </span>
   );
 }

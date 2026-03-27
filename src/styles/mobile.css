@@ -170,6 +170,32 @@
   .results-cta-secondary {
     grid-template-columns: 1fr !important;
   }
+
+  /* Results PDF Box: Reduce padding on small screens */
+  .results-pdf-box {
+    padding: 16px !important;
+    border-radius: var(--radius-lg) !important;
+  }
+
+  /* Results CTA Grid: Stack on mobile */
+  .results-cta-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Results Score Hero: Reduce padding */
+  .results-score-hero {
+    padding: 24px 16px !important;
+    border-radius: var(--radius-lg) !important;
+  }
+
+  /* Score Gauge Wrapper: Adjust for tiny screens */
+  @media (max-width: 380px) {
+    .score-gauge-wrapper {
+      transform: scale(0.9);
+      margin: -10px 0;
+    }
+  }
 }
 
 /* ── Simulator page ────────────────────────────────────────────── */
