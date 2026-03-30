@@ -11,8 +11,11 @@ import LeadCaptureForm from "../components/results/LeadCaptureForm";
 import { useToast } from "../components/ui/Toast";
 import jsPDF from "jspdf";
 
+import { getDomain } from "../data/domains";
+
 export default function ResultsPage() {
-  const { scoreResult, initSimulator, setPhase } = useAssessment();
+  const { scoreResult, initSimulator, setPhase, selectedDomainId } = useAssessment();
+  const selectedDomain = selectedDomainId ? getDomain(selectedDomainId) : null;
   const toast = useToast();
   const reportRef = React.useRef(null);
   const [downloading, setDownloading] = React.useState(false);
@@ -394,7 +397,9 @@ export default function ResultsPage() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Your Results Report
+              {selectedDomain 
+                ? `${selectedDomain.shortName} Readiness Report`
+                : "Your Readiness Report"}
             </h1>
           </div>
 

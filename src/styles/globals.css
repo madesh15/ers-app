@@ -122,6 +122,16 @@ body {
 }
 .card:hover { border-color: var(--border-bright); background: var(--bg-card-hover); }
 
+.domain-card-interactive:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-blue);
+  box-shadow: 0 12px 24px -10px rgba(0, 93, 158, 0.15);
+  background: #fff;
+}
+.domain-card-interactive:active {
+  transform: translateY(-2px);
+}
+
 /* ─── Button base ───────────────────────────────────────────────── */
 .btn {
   display: inline-flex;

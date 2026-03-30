@@ -31,6 +31,7 @@ const initialState = {
   phase: PHASES.LANDING,
 
   // Assessment
+  selectedDomainId: null,      // null means "all domains"
   answers: {},                 // { [questionId]: { value, toggleBonus? } }
   currentQuestionIndex: 0,
   activeQuestions: [],         // resolved dynamically as answers come in
@@ -63,6 +64,7 @@ const A = {
   INIT_SIMULATOR:       "INIT_SIMULATOR",
   TOGGLE_SUGGESTION:    "TOGGLE_SUGGESTION",
   APPLY_TEMPLATE:       "APPLY_TEMPLATE",
+  SET_DOMAIN:           "SET_DOMAIN",
   RESET:                "RESET",
 };
 
@@ -75,7 +77,7 @@ function reducer(state, action) {
 
     case A.SET_ANSWER: {
       const newAnswers = { ...state.answers, [action.payload.id]: action.payload.answer };
-      const activeQuestions = resolveActiveQuestions(newAnswers, state.shuffledCoreIds);
+      const activeQuestions = resolveActiveQuestions(newAnswers, state.shuffledCoreIds, state.selectedDomainId);
       const scoreResult = calculateScore(newAnswers, activeQuestions);
       return {
         ...state,
@@ -106,7 +108,7 @@ function reducer(state, action) {
     case A.INIT_SIMULATOR: {
       // Clone the original answers as the starting point for simulation
       const simAnswers = { ...state.answers };
-      const activeQuestions = resolveActiveQuestions(simAnswers, state.shuffledCoreIds);
+      const activeQuestions = resolveActiveQuestions(simAnswers, state.shuffledCoreIds, state.selectedDomainId);
       const simScoreResult = calculateScore(simAnswers, activeQuestions);
       return {
         ...state,
@@ -132,7 +134,7 @@ function reducer(state, action) {
         newSimAnswers[suggestion.qId] = { value: suggestion.newValue };
       }
 
-      const activeQuestions = resolveActiveQuestions(newSimAnswers, state.shuffledCoreIds);
+      const activeQuestions = resolveActiveQuestions(newSimAnswers, state.shuffledCoreIds, state.selectedDomainId);
       const simScoreResult = calculateScore(newSimAnswers, activeQuestions);
 
       return {
@@ -153,7 +155,7 @@ function reducer(state, action) {
         newSimAnswers[s.qId] = { value: s.newValue };
       }
 
-      const activeQuestions = resolveActiveQuestions(newSimAnswers, state.shuffledCoreIds);
+      const activeQuestions = resolveActiveQuestions(newSimAnswers, state.shuffledCoreIds, state.selectedDomainId);
       const simScoreResult = calculateScore(newSimAnswers, activeQuestions);
 
       return {
@@ -164,12 +166,24 @@ function reducer(state, action) {
       };
     }
 
+    case A.SET_DOMAIN: {
+      const domainId = action.payload;
+      const activeQuestions = resolveActiveQuestions({}, state.shuffledCoreIds, domainId);
+      return {
+        ...state,
+        selectedDomainId: domainId,
+        activeQuestions,
+        currentQuestionIndex: 0,
+        phase: PHASES.ASSESSMENT,
+      };
+    }
+
     case A.RESET: {
       const shuffled = shuffleArray(getCoreIds());
       return { 
         ...initialState, 
         shuffledCoreIds: shuffled,
-        activeQuestions: resolveActiveQuestions({}, shuffled) 
+        activeQuestions: resolveActiveQuestions({}, shuffled, null) 
       };
     }
 
@@ -217,6 +231,9 @@ export function AssessmentProvider({ children }) {
   const applyTemplate = useCallback((suggestions) =>
     dispatch({ type: A.APPLY_TEMPLATE, payload: { suggestions } }), []);
 
+  const setDomain = useCallback((domainId) =>
+    dispatch({ type: A.SET_DOMAIN, payload: domainId }), []);
+
   const reset = useCallback(() =>
     dispatch({ type: A.RESET }), []);
 
@@ -231,6 +248,7 @@ export function AssessmentProvider({ children }) {
     initSimulator,
     toggleSuggestion,
     applyTemplate,
+    setDomain,
     reset,
   };
 

@@ -105,6 +105,26 @@ export const QUESTIONS = [
       { value: "shared_doc",label: "Shared document updates",   icon: "📁", pts: 3 },
       { value: "dashboard", label: "Live system dashboard",     icon: "📡", pts: 5 },
     ],
+    adaptiveTrigger: {
+      triggerValues: ["phone", "texts"],
+      unlocks: ["Q2a"],
+      microCopy: "Manual tracking usually hides coordination gaps — let's look closer",
+    },
+  },
+
+  {
+    id: "Q2a",
+    domain: 1,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "How much administrative time is spent per week manually verifying availability?",
+    options: [
+      { value: "excessive", label: "20+ hours (major drain)", icon: "⏳", pts: 0 },
+      { value: "moderate",  label: "10–20 hours",            icon: "🕒", pts: 1 },
+      { value: "low",       label: "5–10 hours",             icon: "⏱️", pts: 2 },
+      { value: "minimal",   label: "< 5 hours",              icon: "✅", pts: 4 },
+    ],
   },
 
   {
@@ -120,6 +140,26 @@ export const QUESTIONS = [
       { value: "1to2hrs",   label: "1 – 2 hours",  pts: 2 },
       { value: "30to60min", label: "30 – 60 min",  pts: 3 },
       { value: "under30",   label: "< 30 min",     pts: 5 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["over2hrs", "1to2hrs"],
+      unlocks: ["Q3a"],
+      microCopy: "Delays in resolution often signal a lack of reserve capacity",
+    },
+  },
+
+  {
+    id: "Q3a",
+    domain: 1,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "What is the primary cause of delay in resolving no-shows?",
+    options: [
+      { value: "comms",     label: "Communication breakdown", icon: "📵", pts: 0 },
+      { value: "no_reserve",label: "Lack of standby reserves",icon: "🪑", pts: 1 },
+      { value: "transport", label: "Transportation/logistics",icon: "🚗", pts: 2 },
+      { value: "auth",      label: "Approval/Authorization",  icon: "🔑", pts: 3 },
     ],
   },
 
@@ -141,40 +181,25 @@ export const QUESTIONS = [
       { value: "generic_sw", label: "Generic asset software",                  icon: "💼", pts: 3 },
       { value: "realtime",   label: "Election-specific real-time system",      icon: "📡", pts: 5 },
     ],
-  },
-
-  {
-    id: "Q5",
-    domain: 2,
-    type: "core",
-    points: 5,
-    interaction: "cards",
-    text: "How do you manage Logic & Accuracy (L&A) testing workflows before elections?",
-    options: [
-      { value: "manual_check", label: "Manual checklists",                 icon: "✍️", pts: 0 },
-      { value: "email_remind", label: "Email / calendar reminders",        icon: "📅", pts: 2 },
-      { value: "documented",   label: "Documented process, no automation", icon: "📋", pts: 3 },
-      { value: "automated",    label: "Automated L&A tracking system",     icon: "⚙️", pts: 5 },
-    ],
     adaptiveTrigger: {
-      triggerValues: ["manual_check", "email_remind"],
-      unlocks: ["Q5a"],
-      microCopy: "L&A testing gaps are a leading cause of equipment failures — let's go deeper",
+      triggerValues: ["paper", "spreadsheet"],
+      unlocks: ["Q4a"],
+      microCopy: "Manual tracking often leads to 'ghost equipment' — let's verify visibility",
     },
   },
 
   {
-    id: "Q5a",
+    id: "Q4a",
     domain: 2,
     type: "adaptive",
-    points: 3,
+    points: 4,
     interaction: "cards",
-    text: "Has equipment ever arrived at a polling site without completing required L&A testing?",
+    text: "Have you ever 'lost' a piece of equipment during an election due to paper-based tracking?",
     options: [
-      { value: "yes_multiple", label: "Yes, more than once",    icon: "🚨", pts: 0 },
-      { value: "yes_once",     label: "Yes, once",              icon: "⚠️", pts: 1 },
-      { value: "close",        label: "No, but it's been close",icon: "😅", pts: 2 },
-      { value: "never",        label: "Never",                  icon: "✅", pts: 3 },
+      { value: "yes_major",  label: "Yes, major items (scanners, etc.)", icon: "🚨", pts: 0 },
+      { value: "yes_minor",  label: "Yes, minor items (seals, cases)",   icon: "⚠️", pts: 1 },
+      { value: "close",      label: "No, but audits were difficult",     icon: "🧐", pts: 2 },
+      { value: "never",      label: "Never — perfect tracking",          icon: "✅", pts: 4 },
     ],
   },
 
@@ -191,6 +216,26 @@ export const QUESTIONS = [
       { value: "10to30", label: "10 – 30 min", pts: 3 },
       { value: "under10",label: "< 10 min",    pts: 5 },
     ],
+    adaptiveTrigger: {
+      triggerValues: ["hours", "30to60"],
+      unlocks: ["Q6a"],
+      microCopy: "Search delays can paralyze a polling site — let's impact test this",
+    },
+  },
+
+  {
+    id: "Q6a",
+    domain: 2,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "Does the delay in locating equipment typically impact the start of voting?",
+    options: [
+      { value: "yes_often", label: "Yes, multiple precincts delayed", icon: "🛑", pts: 0 },
+      { value: "yes_once",  label: "Yes, at least one precinct",      icon: "⚠️", pts: 1 },
+      { value: "near_miss", label: "No, but it's been a near miss",   icon: "🏃", pts: 2 },
+      { value: "no_impact", label: "No impact at all",               icon: "✨", pts: 4 },
+    ],
   },
 
   {
@@ -205,6 +250,46 @@ export const QUESTIONS = [
       { value: "historical", label: "Historical spreadsheet estimates",       icon: "📊", pts: 2 },
       { value: "centralized",label: "Centralized inventory with alerts",      icon: "🔔", pts: 4 },
       { value: "automated",  label: "Automated reorder & tracking",           icon: "⚡", pts: 5 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["guesses", "historical"],
+      unlocks: ["Q7a"],
+      microCopy: "Estimation gaps can lead to Election Day shortages",
+    },
+  },
+
+  {
+    id: "Q7a",
+    domain: 2,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "How often do you run out of critical consumables on Election Day?",
+    options: [
+      { value: "frequent",   label: "Frequently (every cycle)", icon: "🔴", pts: 0 },
+      { value: "occasional", label: "Occasionally",           icon: "🟡", pts: 1 },
+      { value: "rare",       label: "Rarely",                 icon: "🟢", pts: 3 },
+      { value: "never",      label: "Never",                  icon: "✨", pts: 4 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["frequent", "occasional"],
+      unlocks: ["Q7b"],
+      microCopy: "Supply chain failure during an election is high risk",
+    },
+  },
+
+  {
+    id: "Q7b",
+    domain: 2,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "What is the emergency protocol for resupplying a precinct?",
+    options: [
+      { value: "no_plan",    label: "No formal protocol",          icon: "🤷", pts: 0 },
+      { value: "manual_run", label: "Staff manually drives supplies",icon: "🚗", pts: 1 },
+      { value: "deputy",     label: "Sheriff / Deputy delivery",    icon: "🚔", pts: 3 },
+      { value: "automated",  label: "Automated courier dispatch",   icon: "📡", pts: 4 },
     ],
   },
 
@@ -228,9 +313,14 @@ export const QUESTIONS = [
       { value: "under1hr",  label: "< 1 hr via AI system", pts: 5 },
     ],
     adaptiveTrigger: {
-      triggerValues: ["over_week", "2to5days"],
+      triggerValues: ["over_week", "2to5days", "same_day"],
       unlocks: ["Q8a"],
       microCopy: "This is where most counties face challenges — let's understand your escalation path",
+    },
+    adaptiveTriggerAlt: {
+      triggerValues: ["over_week", "2to5days"],
+      unlocks: ["Q8b"],
+      microCopy: "Longer delays often imply higher litigation risks",
     },
   },
 
@@ -250,6 +340,21 @@ export const QUESTIONS = [
   },
 
   {
+    id: "Q8b",
+    domain: 3,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "What is the estimated financial cost or risk of these legal delays?",
+    options: [
+      { value: "high",     label: "High (potential litigation/re-votes)", icon: "⚖️", pts: 0 },
+      { value: "moderate", label: "Significant (extended poll hours)",    icon: "🕒", pts: 1 },
+      { value: "minor",    label: "Minor (individual voter complaints)",  icon: "💬", pts: 3 },
+      { value: "none",     label: "Minimal risk",                        icon: "🛡️", pts: 4 },
+    ],
+  },
+
+  {
     id: "Q9",
     domain: 3,
     type: "core",
@@ -261,6 +366,65 @@ export const QUESTIONS = [
       { value: "manual",   label: "Shared drive, manually updated",  icon: "💾", pts: 2 },
       { value: "digital",  label: "Digital, updated per cycle",      icon: "🔄", pts: 3 },
       { value: "ai",       label: "AI-powered, real-time updates",   icon: "🤖", pts: 5 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["outdated", "manual"],
+      unlocks: ["Q9a"],
+      microCopy: "Updating staff on law changes is a critical compliance step",
+    },
+  },
+
+  {
+    id: "Q9a",
+    domain: 3,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "How do you ensure poll workers have read the most recent legal updates?",
+    options: [
+      { value: "hope",      label: "Assumed read (no tracking)",     icon: "🤞", pts: 0 },
+      { value: "verbal",    label: "Verbal confirmation at check-in", icon: "🗣️", pts: 1 },
+      { value: "sign_off",  label: "Manual paper sign-off sheets",    icon: "✍️", pts: 2 },
+      { value: "digital",   label: "Digital read-receipts/tracking",  icon: "📱", pts: 4 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["verbal", "sign_off", "digital"],
+      unlocks: ["Q9b"],
+      microCopy: "Auditability is key — let's look at documentation",
+    },
+  },
+
+  {
+    id: "Q9b",
+    domain: 3,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "How do you document specific legal advice given to a poll worker?",
+    options: [
+      { value: "not_doc",    label: "Rarely documented (verbal only)", icon: "💨", pts: 0 },
+      { value: "notebook",   label: "Handwritten notebooks",           icon: "📝", pts: 1 },
+      { value: "log",        label: "Digital support log",             icon: "💻", pts: 3 },
+      { value: "integrated", label: "Integrated case management system", icon: "⚙️", pts: 4 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["notebook", "log"],
+      unlocks: ["Q9c"],
+      microCopy: "Searchability can save hours during an audit",
+    },
+  },
+
+  {
+    id: "Q9c",
+    domain: 3,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "Is this documentation easily searchable during a post-election challenge?",
+    options: [
+      { value: "no",       label: "No — requires manual paging",   icon: "📖", pts: 0 },
+      { value: "partial",  label: "Partially — simple text search", icon: "🔍", pts: 2 },
+      { value: "high",     label: "Highly searchable / indexed",    icon: "📂", pts: 4 },
     ],
   },
 
@@ -321,22 +485,25 @@ export const QUESTIONS = [
       { value: "1to4",    label: "1 – 4 hours",  pts: 5 },
       { value: "under1",  label: "< 1 hour",     pts: 6 },
     ],
+    adaptiveTrigger: {
+      triggerValues: ["over48", "24to48", "12to24"],
+      unlocks: ["Q11c"],
+      microCopy: "Extended resolution times often point to staffing or tool limitations",
+    },
   },
 
   {
-    id: "Q11a",
+    id: "Q11c",
     domain: 4,
-    type: "core",
-    points: 6,
-    interaction: "slider",
-    text: "How much visibility does the central office have into the backlog of incoming support requests during early voting?",
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "Do these delays lead to negative press or social media complaints from voters?",
     options: [
-      { value: "blind",      label: "Completely blind",   pts: 0 },
-      { value: "eod",        label: "End of day reports", pts: 1 },
-      { value: "delayed",    label: "Delayed hourly syncs", pts: 3 },
-      { value: "manager",    label: "Only manager visibility", pts: 4 },
-      { value: "dashboard",  label: "Live static dashboard", pts: 5 },
-      { value: "live_ai",    label: "Live AI-assisted dashboard", pts: 6 },
+      { value: "often",   label: "Often — major PR risk", icon: "🗞️", pts: 0 },
+      { value: "sometimes",label: "Sometimes",             icon: "🗣️", pts: 1 },
+      { value: "rarely",   label: "Rarely",                icon: "🟡", pts: 3 },
+      { value: "never",    label: "Never",                 icon: "✨", pts: 4 },
     ],
   },
 
@@ -355,12 +522,66 @@ export const QUESTIONS = [
       { value: "rules",        label: "Automated routing rules",           icon: "⚙️", pts: 5 },
       { value: "ai_score",     label: "AI urgency scoring & routing",      icon: "🤖", pts: 6 },
     ],
+    adaptiveTrigger: {
+      triggerValues: ["fifo", "guesswork"],
+      unlocks: ["Q11d"],
+      microCopy: "Static prioritization often ignores the urgency of critical technical failures",
+    },
   },
 
-  // ══════════════════════════════════════════════════════════════════
-  // DOMAIN 5 — Analytics & FOIA Readiness  (2 Core, no adaptive)
-  // Strategic Goal: Expose transparency gaps
-  // ══════════════════════════════════════════════════════════════════
+  {
+    id: "Q11d",
+    domain: 4,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "How do you ensure high-priority precincts aren't stuck behind minor requests?",
+    options: [
+      { value: "manual",    label: "Manual override by lead tech", icon: "⌨️", pts: 1 },
+      { value: "yell",      label: "Whoever yells the loudest",    icon: "📣", pts: 0 },
+      { value: "rules",     label: "Strict urgency-based rules",   icon: "📏", pts: 3 },
+      { value: "ai",        label: "AI-priority auto-escalation",  icon: "🤖", pts: 4 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["manual", "yell"],
+      unlocks: ["Q11e"],
+      microCopy: "Subjective prioritization is difficult to scale during high-turnout elections",
+    },
+  },
+
+  {
+    id: "Q11e",
+    domain: 4,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "Can you identify which precincts are reporting the most technical issues in real-time?",
+    options: [
+      { value: "no",       label: "No — only found out after EOD", icon: "🌑", pts: 0 },
+      { value: "limited",  label: "Limited (manual spreadsheet logs)", icon: "📊", pts: 1 },
+      { value: "heat_map", label: "Yes — live ticketing heat map",  icon: "🗺️", pts: 3 },
+      { value: "ai_trend", label: "Yes — AI trend prediction",      icon: "📈", pts: 4 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["limited", "heat_map"],
+      unlocks: ["Q11f"],
+      microCopy: "Predictive analytics can help you re-allocate techs before they are needed",
+    },
+  },
+
+  {
+    id: "Q11f",
+    domain: 4,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "Do you use this data to preemptively send technicians to high-risk areas?",
+    options: [
+      { value: "reactive",  label: "Stay reactive (calls only)",  icon: "📱", pts: 0 },
+      { value: "manual",    label: "Manual proactive dispatch",    icon: "🏎️", pts: 2 },
+      { value: "automated", label: "Automated route optimization",icon: "📡", pts: 4 },
+    ],
+  },
 
   {
     id: "Q12",
@@ -374,6 +595,46 @@ export const QUESTIONS = [
       { value: "manual",     label: "Manual spreadsheet compilation",    icon: "📊", pts: 2 },
       { value: "basic_bi",   label: "Basic BI / reporting tool",         icon: "📈", pts: 3 },
       { value: "integrated", label: "Integrated analytics platform",     icon: "🔭", pts: 5 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["none", "manual"],
+      unlocks: ["Q12a"],
+      microCopy: "Manual reporting is prone to human error — let's look at the time cost",
+    },
+  },
+
+  {
+    id: "Q12a",
+    domain: 5,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "How many person-hours are spent compiling data for a single post-election report?",
+    options: [
+      { value: "excessive", label: "40+ hours (full week)",   icon: "😩", pts: 0 },
+      { value: "moderate",  label: "16–40 hours",            icon: "🕒", pts: 1 },
+      { value: "low",       label: "4–16 hours",             icon: "⏱️", pts: 2 },
+      { value: "automated", label: "Under 4 hours (automated)", icon: "⚡", pts: 4 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["excessive", "moderate"],
+      unlocks: ["Q12b"],
+      microCopy: "High manual effort often correlates with low data validation",
+    },
+  },
+
+  {
+    id: "Q12b",
+    domain: 5,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "Is this data typically validated by a second party for accuracy?",
+    options: [
+      { value: "no",       label: "No — trust the single source",    icon: "🤞", pts: 0 },
+      { value: "spot",     label: "Spot checks only",                icon: "🔍", pts: 1 },
+      { value: "formal",   label: "Formal multi-person sign-off",   icon: "✍️", pts: 3 },
+      { value: "system",   label: "Automated system validation",    icon: "⚙️", pts: 4 },
     ],
   },
 
@@ -390,6 +651,61 @@ export const QUESTIONS = [
       { value: "5to10",   label: "5 – 10 days", pts: 2 },
       { value: "2to4",    label: "2 – 4 days",  pts: 3 },
       { value: "under24h",label: "< 24 hours",  pts: 5 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["weeks", "5to10"],
+      unlocks: ["Q13a"],
+      microCopy: "FOIA delays can often be traced to manual redaction or lookups",
+    },
+  },
+
+  {
+    id: "Q13a",
+    domain: 5,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "What is the primary bottleneck in your FOIA fulfillment process?",
+    options: [
+      { value: "gathering", label: "Data gathering (multiple files)", icon: "📂", pts: 1 },
+      { value: "redaction", label: "Manual redaction of PII",         icon: "🖍️", pts: 0 },
+      { value: "legal",     label: "Legal / Supervisor review",       icon: "⚖️", pts: 1 },
+      { value: "delivery",  label: "Manual delivery/mailing",        icon: "✉️", pts: 2 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["redaction"],
+      unlocks: ["Q13b"],
+      microCopy: "PII redaction is the #1 cause of legal errors in FOIA",
+    },
+  },
+
+  {
+    id: "Q13b",
+    domain: 5,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "Do you have automated tools for redacting sensitive voter information?",
+    options: [
+      { value: "no",       label: "No — literal 'black marker'",     icon: "🖋️", pts: 0 },
+      { value: "pdf_tool", label: "Standard PDF editor only",        icon: "📄", pts: 1 },
+      { value: "batch",    label: "Batch processing software",       icon: "📦", pts: 3 },
+      { value: "ai_redact",label: "AI-powered auto-redaction",       icon: "🤖", pts: 4 },
+    ],
+  },
+
+  {
+    id: "Q13c",
+    domain: 5,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "Do you have a way to track FOIA trend data across multiple election cycles?",
+    options: [
+      { value: "no",       label: "No — handled transactionally",    icon: "💨", pts: 0 },
+      { value: "spreadsheet", label: "Manual spreadsheet log",       icon: "📊", pts: 1 },
+      { value: "dedicated", label: "Dedicated FOIA tracking system", icon: "📋", pts: 3 },
+      { value: "transparency", label: "Public Transparency Portal", icon: "🌐", pts: 4 },
     ],
   },
 
@@ -415,9 +731,24 @@ export const QUESTIONS = [
     ],
     adaptiveTrigger: {
       triggerValues: ["manual", "email_dig"],
-      unlocks: ["Q24"],
+      unlocks: ["Q21a", "Q24"],
       microCopy: "Based on your answer — this is where cure workflow gaps typically emerge",
     },
+  },
+
+  {
+    id: "Q21a",
+    domain: 6,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "What is your estimated error rate for manual data entry of absentee requests?",
+    options: [
+      { value: "high",     label: "High (> 5% error risk)",          icon: "🚨", pts: 0 },
+      { value: "moderate", label: "Moderate (2–5%)",                 icon: "🟡", pts: 1 },
+      { value: "low",      label: "Low (< 2%)",                      icon: "🟢", pts: 2 },
+      { value: "verified", label: "Verified via double-entry",       icon: "✅", pts: 4 },
+    ],
   },
 
   {
@@ -433,6 +764,26 @@ export const QUESTIONS = [
       { value: "sep_systems",    label: "Separate systems for ID & voter records",         icon: "📁", pts: 1 },
       { value: "partial_int",    label: "Partial integration between systems",             icon: "🔗", pts: 3 },
       { value: "auto_verify",    label: "Instant auto-verification via integrated system", icon: "⚡", pts: 5 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["manual_verify", "sep_systems"],
+      unlocks: ["Q22a"],
+      microCopy: "Manual verification is the primary cause of certification delays",
+    },
+  },
+
+  {
+    id: "Q22a",
+    domain: 6,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "How many voters are typically delayed due to signature mismatches or manual verification?",
+    options: [
+      { value: "many",    label: "Many (significant voter complaints)", icon: "🗣️", pts: 0 },
+      { value: "some",    label: "Some (handled via phone)",           icon: "📞", pts: 1 },
+      { value: "few",     label: "Few (streamlined process)",          icon: "👌", pts: 3 },
+      { value: "none",    label: "None — automated resolution",         icon: "✨", pts: 4 },
     ],
   },
 
@@ -452,7 +803,26 @@ export const QUESTIONS = [
     ],
     toggleLabel: "Report includes cure status & voter communication history",
     toggleBonus: 1,
+    adaptiveTrigger: {
+      triggerValues: ["multi_days", "next_day"],
+      unlocks: ["Q23a"],
+      microCopy: "Reporting delays often hide significant operational bottlenecks",
+    },
+  },
 
+  {
+    id: "Q23a",
+    domain: 6,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "Does the delay in status reporting lead to increased call volume from anxious voters?",
+    options: [
+      { value: "overwhelming", label: "Yes — paralyzes the phone lines", icon: "🆘", pts: 0 },
+      { value: "significant",  label: "Yes — significant burden",        icon: "📞", pts: 1 },
+      { value: "minor",        label: "Minor — mostly online check-ins",  icon: "💬", pts: 3 },
+      { value: "none",         label: "None — they trust the system",    icon: "🛡️", pts: 4 },
+    ],
   },
 
   {
@@ -468,6 +838,46 @@ export const QUESTIONS = [
       { value: "spreadsheet",     label: "Spreadsheet tracking",               icon: "📊", pts: 1 },
       { value: "partial_sys",     label: "Partial system support",             icon: "🔗", pts: 3 },
       { value: "full_auto",       label: "Fully tracked + automated workflow", icon: "⚡", pts: 4 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["manual_outreach", "spreadsheet"],
+      unlocks: ["Q24a"],
+      microCopy: "Without automated tracking, curing is often inconsistent",
+    },
+  },
+
+  {
+    id: "Q24a",
+    domain: 6,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "How do you verify that a voter has received and understood their curing instructions?",
+    options: [
+      { value: "none",      label: "No verification (just send/call)", icon: "🤷", pts: 0 },
+      { value: "callbacks", label: "Voter must call back to confirm", icon: "📞", pts: 1 },
+      { value: "track",     label: "Tracking link in email/text",     icon: "🔗", pts: 3 },
+      { value: "integrated",label: "Integrated confirmation portal",  icon: "🌐", pts: 4 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["none", "callbacks"],
+      unlocks: ["Q24b"],
+      microCopy: "Low confirmation rates significantly increase rejection risks",
+    },
+  },
+
+  {
+    id: "Q24b",
+    domain: 6,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "What percentage of 'cured' ballots are still rejected due to late return?",
+    options: [
+      { value: "high",    label: "High (> 20%)",           icon: "🚨", pts: 0 },
+      { value: "moderate",label: "Moderate (10–20%)",      icon: "🟡", pts: 1 },
+      { value: "low",     label: "Low (< 10%)",            icon: "🟢", pts: 3 },
+      { value: "none",    label: "Virtually zero",         icon: "✨", pts: 4 },
     ],
   },
 
@@ -490,6 +900,45 @@ export const QUESTIONS = [
       { value: "static",      label: "Static Website PDFs",            icon: "📄", pts: 3 },
       { value: "realtime",    label: "Real-Time Voter Guidance",       icon: "🤖", pts: 5 },
     ],
+    adaptiveTrigger: {
+      triggerValues: ["none", "manual", "static"],
+      unlocks: ["Q25a"],
+      microCopy: "Outdated dissemination methods lead to voter confusion on Election Day",
+    },
+  },
+
+  {
+    id: "Q25a",
+    domain: 7,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "How do you handle voters who arrive at the wrong polling location?",
+    options: [
+      { value: "manual_map", label: "Poll worker looks at paper map", icon: "🗺️", pts: 0 },
+      { value: "call_hq",    label: "Call HQ for verification",       icon: "📞", pts: 1 },
+      { value: "tablet_lkp", label: "Tablet-based address lookup",    icon: "📱", pts: 3 },
+      { value: "ai_qr",      label: "Voter scans QR for AI directions", icon: "🤖", pts: 4 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["manual_map", "call_hq"],
+      unlocks: ["Q25b"],
+      microCopy: "Search delays at the polls increase line wait times for everyone",
+    },
+  },
+
+  {
+    id: "Q25b",
+    domain: 7,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "Does your current system provide real-time directions to the correct location?",
+    options: [
+      { value: "no",       label: "No — static address only",      icon: "🏠", pts: 0 },
+      { value: "link",     label: "Link to Google/Apple Maps",      icon: "📍", pts: 2 },
+      { value: "live_ai",  label: "Live AI-guided navigation",      icon: "🤖", pts: 4 },
+    ],
   },
 
   {
@@ -504,6 +953,66 @@ export const QUESTIONS = [
       { value: "email",       label: "Manual Email Response",          icon: "📧", pts: 1 },
       { value: "call_center", label: "Dedicated Call Center",          icon: "🧑‍💼", pts: 3 },
       { value: "ai_auto",      label: "AI-Powered Automated Response", icon: "🤖", pts: 5 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["email", "call_center"],
+      unlocks: ["Q26a"],
+      microCopy: "Human-only response systems struggle to scale during peak volume",
+    },
+  },
+
+  {
+    id: "Q26a",
+    domain: 7,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "What is the average wait time for a voter calling your inquiry line during peak hours?",
+    options: [
+      { value: "over30",  label: "> 30 minutes (major friction)", icon: "🚨", pts: 0 },
+      { value: "10to30",  label: "10 – 30 minutes",              icon: "🕒", pts: 1 },
+      { value: "under10", label: "Under 10 minutes",             icon: "⏱️", pts: 3 },
+      { value: "instant", label: "Instant (AI automated)",       icon: "🤖", pts: 4 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["over30", "10to30"],
+      unlocks: ["Q26b"],
+      microCopy: "Frustrated voters are more likely to abandon the voting process",
+    },
+  },
+
+  {
+    id: "Q26b",
+    domain: 7,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "Do you have a way to track common voter questions to proactively update your FAQ?",
+    options: [
+      { value: "no",       label: "No — anecdotal feedback only", icon: "👂", pts: 0 },
+      { value: "manual",   label: "Manual categorization of emails", icon: "📊", pts: 1 },
+      { value: "dashboard", label: "Live inquiry analytics dashboard", icon: "📈", pts: 3 },
+      { value: "ai_kb",     label: "AI auto-updating Knowledge Base", icon: "🤖", pts: 4 },
+    ],
+    adaptiveTrigger: {
+      triggerValues: ["no", "manual"],
+      unlocks: ["Q26c"],
+      microCopy: "Multi-lingual voters face the highest barriers to accurate info",
+    },
+  },
+
+  {
+    id: "Q26c",
+    domain: 7,
+    type: "adaptive",
+    points: 4,
+    interaction: "cards",
+    text: "Can your system handle inquiries in multiple languages?",
+    options: [
+      { value: "english",  label: "English only",                 icon: "🇺🇸", pts: 0 },
+      { value: "bilingual",label: "English + Spanish",            icon: "🇲🇽", pts: 2 },
+      { value: "multi",    label: "Multi-lingual (5+ languages)", icon: "🌍", pts: 3 },
+      { value: "ai_poly",  label: "AI Neural multi-lingual (any)", icon: "🤖", pts: 4 },
     ],
   },
 ];

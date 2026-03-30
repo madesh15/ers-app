@@ -10,17 +10,66 @@ import { TIERS, PENALTY_RULES, getTier } from "../data/tiers";
 // ─── Resolve active question list ────────────────────────────────
 // Starts from core questions and appends adaptive questions based on answers.
 // Returns ordered array of question objects that the user should see.
-export function resolveActiveQuestions(answers = {}, shuffledIds = null) {
-  const core = QUESTIONS.filter((q) => q.type === "core");
-  
+export function resolveActiveQuestions(answers = {}, shuffledIds = null, domainId = null) {
+  // 1. Get initial pool of core questions
+  let pool = QUESTIONS.filter((q) => q.type === "core");
+
+  // 2. Filter by domain if requested
+  if (domainId) {
+    pool = pool.filter((q) => q.domain === domainId);
+  }
+
+  // 3. Apply shuffling if provided (only for core questions)
   if (shuffledIds && shuffledIds.length > 0) {
-    // Map the shuffled IDs back to question objects
-    return shuffledIds
-      .map(id => core.find(q => q.id === id))
+    const idMap = new Map(pool.map(q => [q.id, q]));
+    pool = shuffledIds
+      .map(id => idMap.get(id))
       .filter(Boolean);
   }
+
+  // 4. Dynamically insert adaptive questions based on triggers in answers
+  // We use a while loop or iterative approach because adaptive questions 
+  // can themselves trigger more adaptive questions.
+  let active = [...pool];
+  let i = 0;
   
-  return core;
+  while (i < active.length) {
+    const q = active[i];
+    const ans = answers[q.id];
+    
+    if (ans) {
+      const checkTrigger = (trigger) => {
+        if (!trigger) return [];
+        const { triggerValues, unlocks } = trigger;
+        if (triggerValues.includes(ans.value)) {
+          return unlocks;
+        }
+        return [];
+      };
+
+      const unlockedIds = [
+        ...checkTrigger(q.adaptiveTrigger),
+        ...checkTrigger(q.adaptiveTriggerAlt)
+      ];
+
+      if (unlockedIds.length > 0) {
+        // Find the questions for these IDs
+        const unlockedQs = unlockedIds
+          .map(id => QUESTIONS.find(qq => qq.id === id))
+          .filter(Boolean)
+          // Ensure they aren't already in the list to avoid infinite loops
+          .filter(qq => !active.find(existing => existing.id === qq.id));
+
+        if (unlockedQs.length > 0) {
+          // Insert them immediately after the current question
+          active.splice(i + 1, 0, ...unlockedQs);
+        }
+      }
+    }
+    i++;
+  }
+
+  return active;
 }
 
 // ─── Micro-copy resolver ─────────────────────────────────────────

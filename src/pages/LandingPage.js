@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useAssessment, PHASES } from "../context/AssessmentContext";
 import { DOMAINS } from "../data/domains";
 
@@ -11,7 +11,12 @@ const STATS = [
 
 
 export default function LandingPage() {
-  const { setPhase, reset } = useAssessment();
+  const { setPhase, reset, setDomain } = useAssessment();
+  const domainSectionRef = useRef(null);
+
+  const scrollToDomains = () => {
+    domainSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <div style={{ position: "relative", overflow: "hidden" }}>
@@ -76,9 +81,16 @@ export default function LandingPage() {
             className="btn btn-primary"
             style={{ fontSize: 17, padding: "16px 44px", letterSpacing: "-0.01em" }}
           >
-            🚀 Start Your Assessment
+            🚀 Start Your Full Assessment
           </button>
 
+          <button
+            onClick={scrollToDomains}
+            className="btn btn-primary"
+            style={{ fontSize: 17, padding: "16px 44px", letterSpacing: "-0.01em" }}
+          >
+            📂 Domain Based Assessment
+          </button>
         </div>
 
         <p className="fade-up-4" style={{
@@ -123,7 +135,12 @@ export default function LandingPage() {
       </div>
 
       {/* ── Domain cards ── */}
-      <div style={{ maxWidth: 960, margin: "0 auto 64px", padding: "0 24px" }}>
+      <div ref={domainSectionRef} style={{
+        maxWidth: 960,
+        margin: "0 auto 64px",
+        padding: "0 24px",
+        scrollMarginTop: "40px"
+      }}>
         <div style={{
           fontFamily: "var(--font-mono)",
           fontSize: 11,
@@ -143,12 +160,15 @@ export default function LandingPage() {
           {DOMAINS.map((d, i) => (
             <div
               key={d.id}
-              className="fade-up card"
+              onClick={() => setDomain(d.id)}
+              className="fade-up card domain-card-interactive"
               style={{
                 animationDelay: `${i * 0.06}s`,
                 padding: "18px 20px",
                 position: "relative",
                 overflow: "hidden",
+                cursor: "pointer",
+                transition: "all 0.2s ease",
               }}
             >
               <div style={{
