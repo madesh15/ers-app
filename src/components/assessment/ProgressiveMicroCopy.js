@@ -22,7 +22,7 @@ export default function ProgressiveMicroCopy({ copy }) {
       border: "1px solid rgba(99,102,241,0.2)",
       borderRadius: "var(--radius-md)",
       fontSize: 13,
-      color: "#a5b4fc",
+      color: "#6366f1",
       fontStyle: "italic",
       display: "flex",
       alignItems: "flex-start",
