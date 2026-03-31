@@ -3,7 +3,7 @@ import { useAssessment, PHASES } from "../context/AssessmentContext";
 import { DOMAINS } from "../data/domains";
 
 const STATS = [
-  { value: "20", label: "Adaptive Questions" },
+  { value: "18-53", label: "Adaptive Questions" },
   { value: "7", label: "Operational Domains" },
   { value: "100pt", label: "Weighted Score" },
   { value: "4", label: "Readiness Tiers" },
